@@ -1,7 +1,7 @@
 const path = require('path')
 
 const webpack = require('webpack')
-const nodeExternals = require('webpack-node-externals')
+// const nodeExternals = require('webpack-node-externals')
 
 const isDev = process.argv.indexOf('--develop') >= 0
 const isWatch = process.argv.indexOf('--watch') >= 0
@@ -34,7 +34,7 @@ module.exports = {
       libraryTarget: 'commonjs2',
     },
     target: 'node',
-    externals: [nodeExternals()], // 忽略 node_modules
+    // externals: [nodeExternals()], // 忽略 node_modules
     module: {
       rules: [{
         test: /\.js$/i,
@@ -42,7 +42,6 @@ module.exports = {
           'babel-loader',
           'eslint-loader'
         ],
-        exclude: /node_modules/
       }],
     },
     resolve: {

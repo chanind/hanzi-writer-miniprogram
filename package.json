@@ -1,6 +1,6 @@
 {
   "name": "hanzi-writer-miniprogram",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "",
   "main": "miniprogram_dist/index.js",
   "scripts": {
@@ -64,5 +64,7 @@
     "webpack": "^4.29.5",
     "webpack-node-externals": "^1.7.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "hanzi-writer": "^1.4.2"
+  }
 }

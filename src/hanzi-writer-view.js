@@ -30,9 +30,6 @@ Component({
     _touchEnd(evt) {
       if (this.ctx) this.ctx.trigger('pointerEnd', evt);
     },
-    getCanvasContext() {
-      return wx.createCanvasContext('writer-canvas', this);
-    },
     setIsQuizzing(isQuizzing) {
       this.setData({ isQuizzing });
     },

@@ -3402,6 +3402,11 @@ handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^3.1.4"
 
+hanzi-writer@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/hanzi-writer/-/hanzi-writer-1.4.2.tgz#ff9ab2d476166df10a9ab26fd96a8588f06ec30e"
+  integrity sha512-ETgCr8IG2CvgOsiI3x5bEFMSAS2e2Hs50YMzILHStyPn0XkGAdCg1CMwaIL2kVYoDX4Ej+ToMEe9i+DVVLN7bQ==
+
 har-schema@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"

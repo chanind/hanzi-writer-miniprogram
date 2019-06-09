@@ -1,4 +1,4 @@
-import HanziWriter from '../../hanzi-writer/dist/hanzi-writer-lib';
+import HanziWriter from 'hanzi-writer';
 import RenderTarget from './RenderTarget';
 import { removeEmptyKeys } from './utils';
 
@@ -52,7 +52,7 @@ export default class HanziWriterContext {
 
     this.isDestroyed = false;
 
-    this.writer = new HanziWriter(this.comp.getCanvasContext(), removeEmptyKeys({
+    this.writer = new HanziWriter(this.comp, removeEmptyKeys({
       width: this.comp.data.width,
       height: this.comp.data.height,
       charDataLoader,
@@ -76,13 +76,14 @@ export default class HanziWriterContext {
       showHintAfterMisses,
       highlightOnComplete,
       highlightCompleteColor,
-      rendererOverride: { RenderTarget },
+      rendererOverride: { createRenderTarget: RenderTarget.init },
       renderer: 'canvas',
     }));
 
     if (character) {
       this.setCharacter(character);
     }
+    this.comp.connectContext(this);
   }
 
   _ensureNotDestroyed() {

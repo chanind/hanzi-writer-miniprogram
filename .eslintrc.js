@@ -50,6 +50,8 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'node/no-deprecated-api': 'error',
     'node/process-exit-as-throw': 'error',
+    'promise/catch-or-return': 'off',
+    'promise/always-return': 'off',
     'prefer-arrow-callback': 'off',
     'prefer-destructuring': 'off',
     'prefer-template': 'off',

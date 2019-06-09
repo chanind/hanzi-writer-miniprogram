@@ -1,125 +1,72 @@
-# miniprogram-custom-component
+# Hanzi Writer Wechat Miniprogram Plugin (小程序定义组件)
 
-小程序自定义组件开发模板：
+This component can be used in a Wechat miniprogram to add Hanzi Writer for character stroke animations and quizzing.
 
-* 支持 less 编写 wxss
-* 使用 webpack 构建 js
-* 支持自定义组件单元测试
-* 支持 eslint
-* 支持多入口构建
-
-## 使用
-
-* 使用[命令行工具](https://github.com/wechat-miniprogram/miniprogram-cli)进行初始化
-* 直接从 github 上 clone 下来
-
-## 开发
-
-1. 安装依赖：
+## Installation
 
 ```
-npm install
+npm install hanzi-writer-miniprogram
 ```
 
-2. 执行命令：
+## Usage
 
-```
-npm run dev
-```
+In your `page.json`, first add the following to enable the `hanzi-writer-view` component:
 
-默认会在包根目录下生成 miniprogram\_dev 目录，src 中的源代码会被构建并生成到 miniprogram\_dev/components 目录下。如果需要监听文件变化动态构建，则可以执行命令：
-
-```
-npm run watch
-```
-
-> ps: 如果 minirpogram\_dev 目录下已存在小程序 demo，执行`npm run dev`则不会再将 tools 下的 demo 拷贝到此目录下。而执行`npm run watch`则会监听 tools 目录下的 demo 变动并进行拷贝。
-
-3. 生成的 miniprogram\_dev 目录是一个小程序项目目录，以此目录作为小程序项目目录在开发者工具中打开即可查看自定义组件被使用的效果。
-
-4. 进阶：
-
-* 如果有额外的构建需求，可自行修改 tools 目录中的构建脚本。
-* 内置支持 less、sourcemap 等功能，默认关闭。如若需要可以自行修改 tools/config.js 配置文件中相关配置。
-* 内置支持多入口构建，如若需要可自行调整 tools/config.js 配置文件的 entry 字段。
-* 默认开启 eslint，可自行调整规则或在 tools/config.js 中注释掉 eslint-loader 行来关闭此功能。
-
-## 发布
-
-> ps: 发布前得确保已经执行构建，小程序 npm 包只有构建出来的目录是真正被使用到的。
-
-1. 如果还没有 npm 帐号，可以到[ npm 官网](https://www.npmjs.com/)注册一个 npm 帐号。
-2. 在本地登录 npm 帐号，在本地执行：
-
-```
-npm adduser
+```json
+{
+  "usingComponents": {
+    "hanzi-writer-view": "hanzi-writer-miniprogram/hanzi-writer-view"
+  }
+}
 ```
 
-或者
-
+Then, add a `hanzi-writer-view` component to your page. You must add an `id`, `width`, and `height`, like below:
 ```
-npm login
-```
-
-3. 在已完成编写的 npm 包根目录下执行：
-
-```
-npm publish
+<hanzi-writer-view id="hz-writer" width="300" height="300" />
 ```
 
-到此，npm 包就成功发布到 npm 平台了。
+Then in your page, you can control the view via `createHanziWriterContext(<id>)`, like below:
 
-> PS：一些开发者在开发过程中可能修改过 npm 的源，所以当进行登录或发布时需要注意要将源切回 npm 的源。
+```javascript
+import createHanziWriterContext from 'hanzi-writer-miniprogram';
 
-## 目录结构
+Page({
+  onLoad: function() {
+    this.writerCtx = createHanziWriterContext({
+      id: 'hz-test',
+      character: '你',
+      page: this,
+      charDataLoader: (char) => { /* char data loading logic here */ },
+    });
 
-以下为推荐使用的目录结构，如果有必要开发者也可以自行做一些调整:
-
-```
-|--miniprogram_dev // 开发环境构建目录
-|--miniprogram_dist // 生产环境构建目录
-|--src // 源码
-|   |--components // 通用自定义组件
-|   |--images // 图片资源
-|   |
-|   |--xxx.js/xxx.wxml/xxx.json/xxx.wxss // 暴露的 js 模块/自定义组件入口文件
-|
-|--test // 测试用例
-|--tools // 构建相关代码
-|   |--demo // demo 小程序目录，开发环境下会被拷贝生成到 miniprogram_dev 目录中
-|   |--config.js // 构建相关配置文件
-|
-|--gulpfile.js
+    // You can call any normal HanziWriter method here
+    this.writerCtx.loopCharacterAnimation();
+  }
+});
 ```
 
-> PS：对外暴露的 js 模块/自定义组件请放在 src 目录下，不宜放置在过深的目录。另外新增的暴露模块需要在 tools/config.js 的 entry 字段中补充，不然不会进行构建。
+This method requires the `id` from the `hanzi-writer-view` component in wxml, the current page, and a `charDataLoader`. Unfortunately, network access is restricted inside of miniprograms, so you'll need to handle loading character data yourself. You can [read more about loading character data here](https://chanind.github.io/hanzi-writer/docs.html#loading-character-data-link).
 
-## 测试
+You can also pass any other normal Hanzi Writer options to `createHanziWriterContext`, except for `width` and `height` which are set in the `hanzi-writer-view` component. You can see a [full list of options here](https://chanind.github.io/hanzi-writer/docs.html#api-link).
 
-* 执行测试用例：
+## Further Documentations
 
-```
-npm run test
-```
+For more info and docs on Hanzi Writer check out https://chanind.github.io/hanzi-writer
 
-* 检测覆盖率：
+## Data source
 
-```
-npm run coverage
-```
+The chinese character svg and stroke order data used by Hanzi Writer is derived from the [Make me a Hanzi](https://github.com/skishore/makemeahanzi) project with some slight tweaks. The data can be found in the [Hanzi Writer Data](https://github.com/chanind/hanzi-writer-data) repo. There's a visualizer for this data [here](https://chanind.github.io/hanzi-writer-data).
 
-测试用例放在 test 目录下，使用 **miniprogram-simulate** 工具集进行测试，[点击此处查看](https://github.com/wechat-miniprogram/miniprogram-simulate/blob/master/README.md)使用方法。在测试中可能需要变更或调整工具集中的一些方法，可在 test/utils 下自行实现。
+## Contributing
 
-## 其他命令
-
-* 清空 miniprogram_dist 目录：
+Pull requests are welcome! If you would like to contribute code, you'll need to be able to build the project locally. After cloning the Hanzi Writer repo, you can get it set up by running:
 
 ```
-npm run clean
+yarn install
 ```
 
-* 清空 miniprogam_dev 目录：
+## LICENSE
 
-```
-npm run clean-dev
-```
+Hanzi Writer is released under an [MIT](https://raw.githubusercontent.com/chanind/hanzi-writer/master/LICENSE) license.
+
+The Hanzi Writer data comes from the [Make Me A Hanzi](https://github.com/skishore/makemeahanzi) project, which extracted the data from fonts by [Arphic Technology](http://www.arphic.com/), a Taiwanese font forge that released their work under a permissive license in 1999. You can redistribute and/or modify this data under the terms of the Arphic Public License as published by Arphic Technology Co., Ltd. A copy of this license can be found in [ARPHICPL.TXT](https://raw.githubusercontent.com/chanind/hanzi-writer-data/master/ARPHICPL.TXT).
