@@ -33,7 +33,7 @@ import createHanziWriterContext from 'hanzi-writer-miniprogram';
 Page({
   onLoad: function() {
     this.writerCtx = createHanziWriterContext({
-      id: 'hz-test',
+      id: 'hz-writer',
       character: '你',
       page: this,
       charDataLoader: (char) => { /* char data loading logic here */ },
