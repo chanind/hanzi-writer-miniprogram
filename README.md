@@ -1,4 +1,4 @@
-# Hanzi Writer Wechat Miniprogram Plugin (小程序定义组件)
+# Hanzi Writer Wechat Miniprogram Plugin (微信小程序组件)
 
 This component can be used in a Wechat miniprogram to add Hanzi Writer for character stroke animations and quizzing.
 
