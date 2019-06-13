@@ -10,8 +10,8 @@
     "dist": "npm run build",
     "clean-dev": "gulp clean --develop",
     "clean": "gulp clean",
-    "test": "jest ./test/* --silent --bail",
-    "coverage": "jest ./test/* --coverage --bail",
+    "test": "jest ./test/* ",
+    "coverage": "jest ./test/* --coverage",
     "lint": "eslint \"src/**/*.js\"",
     "lint-tools": "eslint \"tools/**/*.js\" --rule \"import/no-extraneous-dependencies: false\""
   },
@@ -59,6 +59,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "jest": "^23.5.0",
     "miniprogram-simulate": "^1.0.0",
+    "semantic-release": "^15.13.16",
     "through2": "^2.0.3",
     "vinyl": "^2.2.0",
     "webpack": "^4.29.5",
