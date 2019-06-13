@@ -1,5 +1,8 @@
 # Hanzi Writer Wechat Miniprogram Plugin (微信小程序组件)
 
+[![CircleCI](https://img.shields.io/circleci/project/github/chanind/hanzi-writer-miniprogram/master.svg)](https://circleci.com/gh/chanind/hanzi-writer-miniprogram/tree/master)
+[![npm](https://img.shields.io/npm/v/hanzi-writer-miniprogram.svg)](https://www.npmjs.com/package/hanzi-writer-miniprogram)
+
 This component can be used in a Wechat miniprogram to add Hanzi Writer for character stroke animations and quizzing.
 
 ## Installation
