@@ -25,7 +25,7 @@ Then, add a `hanzi-writer-view` component to your page. You must add an `id`, `w
 <hanzi-writer-view id="hz-writer" width="300" height="300" />
 ```
 
-Then in your page, you can control the view via `createHanziWriterContext(<id>)`, like below:
+Then in your page, you can control the view via `createHanziWriterContext(options)`, like below:
 
 ```javascript
 import createHanziWriterContext from 'hanzi-writer-miniprogram';
@@ -36,7 +36,6 @@ Page({
       id: 'hz-writer',
       character: '你',
       page: this,
-      charDataLoader: (char) => { /* char data loading logic here */ },
     });
 
     // You can call any normal HanziWriter method here
@@ -45,7 +44,9 @@ Page({
 });
 ```
 
-This method requires the `id` from the `hanzi-writer-view` component in wxml, the current page, and a `charDataLoader`. Unfortunately, network access is restricted inside of miniprograms, so you'll need to handle loading character data yourself. You can [read more about loading character data here](https://chanind.github.io/hanzi-writer/docs.html#loading-character-data-link).
+This method requires the `id` from the `hanzi-writer-view` component in wxml, and the current `page`.
+
+By default, character data is loaded from the hanzi-writer CDN, so you'll need to add https://cdn.jsdelivr.net to your [list of approved domain names](https://developers.weixin.qq.com/miniprogram/dev/framework/ability/network.html). Otherwise, you can provide your own `charDataLoader` function and load character data however you like. You can [read more about loading character data here](https://chanind.github.io/hanzi-writer/docs.html#loading-character-data-link).
 
 You can also pass any other normal Hanzi Writer options to `createHanziWriterContext`, except for `width` and `height` which are set in the `hanzi-writer-view` component. You can see a [full list of options here](https://chanind.github.io/hanzi-writer/docs.html#api-link).
 
