@@ -1,4 +1,4 @@
-# Hanzi Writer Wechat Miniprogram Plugin (小程序定义组件)
+# Hanzi Writer Wechat Miniprogram Plugin (微信小程序组件)
 
 This component can be used in a Wechat miniprogram to add Hanzi Writer for character stroke animations and quizzing.
 
@@ -33,7 +33,7 @@ import createHanziWriterContext from 'hanzi-writer-miniprogram';
 Page({
   onLoad: function() {
     this.writerCtx = createHanziWriterContext({
-      id: 'hz-test',
+      id: 'hz-writer',
       character: '你',
       page: this,
       charDataLoader: (char) => { /* char data loading logic here */ },
