@@ -1,6 +1,7 @@
 import HanziWriter from 'hanzi-writer';
 import RenderTarget from './RenderTarget';
 import { removeEmptyKeys } from './utils';
+import defaultCharDataLoader from './defaultCharDataLoader';
 
 export default class HanziWriterContext {
   constructor({
@@ -41,8 +42,8 @@ export default class HanziWriterContext {
     highlightOnComplete,
     highlightCompleteColor,
   }) {
-    if (!id || !charDataLoader || !page) {
-      throw new Error('parameter id, charDataLoader, page are required');
+    if (!id || !page) {
+      throw new Error('parameter id, page are required');
     }
 
     this.comp = page.selectComponent('#' + id);
@@ -55,7 +56,7 @@ export default class HanziWriterContext {
     this.writer = new HanziWriter(this.comp, removeEmptyKeys({
       width: this.comp.data.width,
       height: this.comp.data.height,
-      charDataLoader,
+      charDataLoader: charDataLoader || defaultCharDataLoader,
       onLoadCharDataError,
       onLoadCharDataSuccess,
       showOutline,
