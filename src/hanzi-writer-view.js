@@ -8,6 +8,14 @@ Component({
       type: Number,
       value: 300,
     },
+    type: {
+      type: String,
+      value: '2d',
+    },
+    disableScroll: {
+      type: Boolean,
+      value: false,
+    },
   },
   data: {
     isQuizzing: false,
