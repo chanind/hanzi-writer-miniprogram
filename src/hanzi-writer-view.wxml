@@ -1,9 +1,9 @@
 <view class="container" style="width: {{width}}px; height: {{height}}px;">
   <canvas
-    id="writer-canvas"
+    id="{{canvasId}}"
     type="{{type}}"
     disable-scroll="{{disableScroll}}"
-    canvas-id="writer-canvas"
+    canvas-id="{{canvasId}}"
     style="width: {{width}}px; height: {{height}}px;"
   />
   <view

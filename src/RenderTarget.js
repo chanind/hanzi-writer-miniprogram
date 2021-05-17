@@ -23,15 +23,20 @@ const eventify = (evt, boundingRect) => {
     return { x, y };
   };
 
-  return { preventDefault: () => { }, getPoint };
+  return { preventDefault: () => {}, getPoint };
 };
 
 class RenderTarget {
-  constructor(view) {
+  constructor(view, ctx, canvas) {
     this.view = view;
     this.eventEmitter = new EventEmitter();
-    this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
-    this.canvas = this.view.selectComponent('#writer-canvas');
+    if (ctx && canvas) {
+      this.ctx = ctx;
+      this.canvas = canvas;
+    } else {
+      this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
+      this.canvas = this.view.selectComponent('#writer-canvas');
+    }
   }
 
   addPointerStartListener(callback) {
@@ -64,13 +69,13 @@ class RenderTarget {
     return new Promise(resolve => {
       this.view
         .createSelectorQuery()
-        .select('#writer-canvas')
+        .select('#' + this.view.data.canvasId)
         .boundingClientRect(resolve)
         .exec();
     });
   }
 }
 
-RenderTarget.init = initData => new RenderTarget(initData);
+RenderTarget.init = (ctx, canvas) => initData => new RenderTarget(initData, ctx, canvas);
 
 module.exports = RenderTarget;
