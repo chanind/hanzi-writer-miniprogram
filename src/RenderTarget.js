@@ -23,15 +23,15 @@ const eventify = (evt, boundingRect) => {
     return { x, y };
   };
 
-  return { preventDefault: () => {}, getPoint };
+  return { preventDefault: () => { }, getPoint };
 };
 
 class RenderTarget {
-  constructor(view, ctx, canvas) {
+  constructor(view, canvas) {
     this.view = view;
     this.eventEmitter = new EventEmitter();
-    if (ctx && canvas) {
-      this.ctx = ctx;
+    if (canvas) {
+      this.ctx = canvas.getContext('2d');
       this.canvas = canvas;
     } else {
       this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
@@ -76,6 +76,6 @@ class RenderTarget {
   }
 }
 
-RenderTarget.init = (ctx, canvas) => initData => new RenderTarget(initData, ctx, canvas);
+RenderTarget.init = canvas => initData => new RenderTarget(initData, canvas);
 
 module.exports = RenderTarget;

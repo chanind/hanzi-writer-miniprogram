@@ -35,7 +35,6 @@ Page({
           page: this,
           drawingWidth: 30,
           renderCanvas: canvas,
-          renderCtx: ctx,
         });
 
         this.writerCtx2.quiz();

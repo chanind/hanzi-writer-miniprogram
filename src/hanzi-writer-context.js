@@ -43,7 +43,6 @@ export default class HanziWriterContext {
     highlightCompleteColor,
 
     // render
-    renderCtx,
     renderCanvas,
   }) {
     if (!id || !page) {
@@ -82,7 +81,7 @@ export default class HanziWriterContext {
       showHintAfterMisses,
       highlightOnComplete,
       highlightCompleteColor,
-      rendererOverride: { createRenderTarget: RenderTarget.init(renderCtx, renderCanvas) },
+      rendererOverride: { createRenderTarget: RenderTarget.init(renderCanvas) },
       renderer: 'canvas',
     }));
 
