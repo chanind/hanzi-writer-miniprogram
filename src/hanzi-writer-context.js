@@ -36,11 +36,14 @@ export default class HanziWriterContext {
     drawingColor,
 
     // quiz options
-
+    drawingWidth,
     leniency,
     showHintAfterMisses,
     highlightOnComplete,
     highlightCompleteColor,
+
+    // render
+    renderCanvas,
   }) {
     if (!id || !page) {
       throw new Error('parameter id, page are required');
@@ -73,11 +76,12 @@ export default class HanziWriterContext {
       highlightColor,
       outlineColor,
       drawingColor,
+      drawingWidth,
       leniency,
       showHintAfterMisses,
       highlightOnComplete,
       highlightCompleteColor,
-      rendererOverride: { createRenderTarget: RenderTarget.init },
+      rendererOverride: { createRenderTarget: RenderTarget.init(renderCanvas) },
       renderer: 'canvas',
     }));
 

@@ -1,5 +1,9 @@
 Component({
   properties: {
+    canvasId: {
+      type: String,
+      value: 'writer-canvas',
+    },
     height: {
       type: Number,
       value: 300,
@@ -10,7 +14,7 @@ Component({
     },
     type: {
       type: String,
-      value: '2d',
+      value: '',
     },
     disableScroll: {
       type: Boolean,
