@@ -33,7 +33,6 @@ class RenderTarget {
     //this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
     //this.canvas = this.view.selectComponent('#writer-canvas');
     
-    // repalce `createCanvasContext`(2.9.0 deprecated) with `createSelectorQuery`
     wx.createSelectorQuery()
       .in(view)
       .select('#writer-canvas')
