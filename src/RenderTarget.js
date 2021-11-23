@@ -30,8 +30,6 @@ class RenderTarget {
   constructor(view) {
     this.view = view;
     this.eventEmitter = new EventEmitter();
-    //this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
-    //this.canvas = this.view.selectComponent('#writer-canvas');
     
     wx.createSelectorQuery()
       .in(view)
