@@ -26,4 +26,4 @@ jobs:
       - run: yarn lint
       - run: yarn test
       - run: yarn build
-      - run: if [ "$CIRCLE_BRANCH" = "master" ]; then yarn semantic-release; fi
+      - run: if [ "$CIRCLE_BRANCH" = "master" ] || [ "$CIRCLE_BRANCH" = "beta" ]; then yarn semantic-release; fi
