@@ -30,8 +30,20 @@ class RenderTarget {
   constructor(view) {
     this.view = view;
     this.eventEmitter = new EventEmitter();
-    this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
-    this.canvas = this.view.selectComponent('#writer-canvas');
+    
+    wx.createSelectorQuery()
+      .in(view)
+      .select('#writer-canvas')
+      .fields({ node: true, size: true })
+	    .exec((res) => {
+            let info = res[0];
+            const dpr = wx.getSystemInfoSync().pixelRatio;
+            this.canvas = info.node;
+            this.canvas.width = info.width * dpr;
+            this.canvas.height = info.height * dpr;
+            this.ctx = this.canvas.getContext('2d');
+            this.ctx.scale(dpr, dpr);
+      });
   }
 
   addPointerStartListener(callback) {
