@@ -27,11 +27,16 @@ const eventify = (evt, boundingRect) => {
 };
 
 class RenderTarget {
-  constructor(view) {
+  constructor(view, canvas) {
     this.view = view;
     this.eventEmitter = new EventEmitter();
-    this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
-    this.canvas = this.view.selectComponent('#writer-canvas');
+    if (canvas) {
+      this.ctx = canvas.getContext('2d');
+      this.canvas = canvas;
+    } else {
+      this.ctx = polyfillCanvasCtx(wx.createCanvasContext('writer-canvas', view));
+      this.canvas = this.view.selectComponent('#writer-canvas');
+    }
   }
 
   addPointerStartListener(callback) {
@@ -64,13 +69,13 @@ class RenderTarget {
     return new Promise(resolve => {
       this.view
         .createSelectorQuery()
-        .select('#writer-canvas')
+        .select('#' + this.view.data.canvasId)
         .boundingClientRect(resolve)
         .exec();
     });
   }
 }
 
-RenderTarget.init = initData => new RenderTarget(initData);
+RenderTarget.init = canvas => initData => new RenderTarget(initData, canvas);
 
 module.exports = RenderTarget;

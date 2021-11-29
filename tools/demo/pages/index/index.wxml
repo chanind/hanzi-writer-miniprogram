@@ -1,1 +1,4 @@
-<comp></comp>
+<view>
+  <comp id="hz-writer" type="" width="300" height="300"></comp>
+  <comp id="hz-writer2" type="2d" width="300" height="300" canvas-id="writer-canvas2"></comp>
+</view>
