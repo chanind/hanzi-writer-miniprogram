@@ -60,7 +60,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "jest": "^23.5.0",
     "miniprogram-simulate": "^1.0.0",
-    "semantic-release": "^18.0.0",
+    "semantic-release": "^23.0.0",
     "through2": "^2.0.3",
     "vinyl": "^2.2.0",
     "webpack": "^4.29.5",
